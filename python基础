@@ -1,0 +1,1531 @@
+# 前言
+Python基础的学习记录
+# python核心语法
+## 变量
+字母：a~z, A ~Z
+数字：0~9
+符号：_
+数字不能作为变量名的开头:abc123正确，123abc错误
+变量名是区分大小写的：ABC，abc  是两个不同的变量名
+## 变量命名规范
+```
+name = "zhang"
+age = 18
+person_age = 40
+newUserName = 'xxx' 	# 驼峰式命名法
+```
+不太好的命名法：user8282""	--除非数字有特殊意义
+最好用英文不要用拼音
+true=1(x)print=1(x)	--避免使用关键字命名
+## 变量赋值
+```
+name = "Smith"
+print(name)
+```
+如果输出print（name1）就会报错
+NameError：name 'name1'is not defined
+```
+a = b = c = 1
+print(a，b，c)
+1 1 1
+```
+```
+a，b，c=1，2，3 #这种命名是python特有的值和变量一一对应
+print(a，b，c)
+1 2 3
+#也可以这样写
+a=1
+b=2
+c=3
+a，b=b，a #也是python特有的一种写法
+```
+如果想手动删除某个变量 del
+```
+del name  #del是pyton中的关键字
+```
+## 数据类型
+python中的数据类型是自动识别的
+
+ - 数值 
+ 	- 整数
+ 	- 浮点数（小数）带小数点
+```
+a=1
+pi=3.14
+b=10.0
+a+b
+11.0  #还是浮点型
+pi+b
+13.14 #还是浮点型
+```
+**若运算中掺进去了浮点型，那么运算结果也一定是浮点型**
+- 字符串
+```
+#转译符号：\
+print（"Buddha：\"What we think,we becom\"")
+#输出结果：Budda:"What we think,we become"
+```
+\可以将它后面的字符"原样输出 
+用双引号"" 单引号''定义都可以
+```
+" " " 123 bcd" " "
+#输出结果：'123 bcd'
+```
+用三个双引号可以打印出一行字符串
+```
+print（
+" " "1234567
+nanddd" " "）
+#输出结果：
+#1234567
+#nanddd
+```
+三个双引号可用于打印多行字符串
+- 布尔值  关键字 不能做变量名
+
+```
+True
+False
+```
+
+- None 关键字 不能做变量名
+## 数据类型转换
+### 数值转换为布尔值
+bool（）
+```
+#除了0是false  其他数值都是true
+bool（0）
+#False
+bool（0.0）
+#False
+bool（1.0）
+#True
+bool（233）
+#True
+```
+### 字符串转换为布尔值
+```
+bool（"sss"）
+#True
+bool（""）
+#False
+bool（" "）
+#True
+```
+**严格意义的空字符转换为False
+空格、制表符等转换为True**
+### None转换为布尔值
+
+```
+bool（None）
+False
+```
+
+### 字符串转为数值
+"1"	输出字符串
+'1' 
+- 字符串转整数	
+```
+int("1")		输出数值
+#1 		
+1+int("1")	输出数值
+#2		
+int("-100")	输出数值
+#-100
+int("+100")	输出数值
+#100
+```
+- 字符串转浮点数
+```
+float ("3.14")
+3.14
+float("aaa3.14")
+#ValueError: could not convert string to float: 'aaa3.14'	显示会出错
+float("   3.14   ")	#前后有空格是可以转换的
+#3.14		
+```
+- 浮点数转整数
+```
+int（3.14）
+#3	
+```
+- 整数转浮点数
+```
+float(100)
+#100.0	
+```
+- int和round转换区别
+```
+int(9.9)
+9
+```
+int()强制转换时会直接将后面的数字砍掉，不遵循四舍五入的规则
+```
+round(9.9)
+10
+round(9.5)
+10
+round(9.1)
+9
+round(9.49）
+```
+round()转换符合四舍五入的规则
+```
+round(3.1415926,2)
+3.14
+round(3.1415926,3)
+3.142
+```
+## 算数运算符
+```
+print(1+1)
+#2
+print(10-1)
+#9
+print(4*2)
+#8
+print(4/2)
+2.0  #返回的数值是浮点型这是由运算符''/''决定的
+print(4//2）
+2   #''//''为整除运算符
+print(5//2)
+2
+print(5/2)
+2.5
+ print(10/3)
+3.3333333335 
+```
+计算机无法表达无线循环小数 ，小数位保留到5是由计算机的底层机制决定的
+计算机在进行浮点数运算时，它的精度是有问题的
+**python书写规范：运算符前后要预留空格**
+```
+print(10 % 4)
+#2  
+```
+**"%"为模运算符 可以理解为取余数**
+```
+print(8 % 4）
+#0
+print(3%4)
+#3
+print(-3%4)
+#1
+```
+a%b相当于a-(a//b)*b
+**0不能做为除数，也不能取模**
+```
+1/0
+#ZeroDivisionError: division by zero
+1%0
+#ZeroDivisionError: integer division or modulo by zero
+```
+## 赋值比较运算符
+```
+print("hello " + "world")
+#hello world
+print("apple" + "apple" + "apple")
+#appleappleapple
+print("apple" * 10)
+```
+![1](https://img-blog.csdnimg.cn/afc30483ca5f4a108bb23893494334bf.png)
+```
+print("您的账户余额为： " + 500）
+```
+![2](https://img-blog.csdnimg.cn/f33ffdc89a5f4a549484a41e0bde983f.png)
+**字符串只支持"+"和"*"的操作，不支持"-"和”/"的操作**
+```
+print("您的账户积分为: " + str(500))
+#str()将数值转化为字符串
+```
+![3](https://img-blog.csdnimg.cn/99e232052b264f10b35b36abb8e3285a.png)
+```
+num = 1
+name = "Smith"
+count +=1 相当于 count = count + 1
+#" ** " xx的几次方
+3 ** 2
+#9
+#count * = 2 相当于 count = count * 2
+```
+**比较运算符**
+返回的结果只能是True或者False
+```
+4 // 2 == 2
+#True
+4 / 2 == 2
+#True
+```
+只要数值在数学意义上相等，不管是数值是整数型还是浮点型，都会返回True
+```
+99 == 99.0000001
+#False
+99 == 99.0000000
+#True
+```
+数值上要完全相等才会返回	True,差一点点都会返回False
+```
+99 == int(99.0000001)
+#True
+```
+**特殊例子**
+```
+100 == ’100‘
+#False
+1.0 == 1
+#True
+int(1.9) == 1
+#True
+```
+## 逻辑运算符
+and or not
+运算多个条件之间的逻辑关系
+```
+a = 10
+a > 0 and a < 100
+#True
+a = -1
+a > 0 and a <100
+#False
+s = 90
+(s > 0 and s < 60) or (s > 90 and s <= 100)
+#False
+```
+多个运算叠加在一起最好用括号括起来 区别优先级
+测试值用边界值
+```
+True and True and True
+#True
+True and True and False
+#False
+False or False or False or True
+#True
+False or False or False or False
+#False
+not 1
+#False
+not 0
+#True
+```
+**python中自动将数值转换为布尔值**
+```
+1 and 2 - 2 and 3 - 4
+#0
+```
+![4](https://img-blog.csdnimg.cn/20aef72658f84c3c80e1a4cec73d9b8f.png)
+```
+#下面的代码在命令提示符中测试
+n = 8
+a = n or 1
+n
+8
+a
+8
+n = 0
+a = n or 1
+a
+1
+```
+## 条件判断
+```
+num = 10000
+if num % 2 == 0: 
+    print(num,"是一个偶数")
+else:
+    print(num,"是一个奇数")
+print("程序结束")
+```
+执行if  else 时  要缩进4个空格 在Pycharm中可以用Tab键 回车 
+ctrl+/    注释多行代码
+执行多个条件时，中间可以用elif
+```
+score = 99
+# 60以下 不及格
+# 60~90 合格
+# 90以上 优秀
+if score < 60:
+    print("您的成绩不及格")
+elif score < 90:
+    print("您的成绩合格")
+else:
+    print("您的成绩优秀")
+```
+在python中，pass用于占位
+```
+# 60以下 不及格
+# 60-70 合格
+# 60~90 良好
+# 90以上 优秀
+if score >= 60:
+    pass
+else:
+    print("您的成绩不合格")
+将占位的地方补上
+if score >= 60:
+    if score < 70:
+        print("您的成绩合格")
+    elif score < 90:
+        print("您的成绩良好")
+    else:
+        print("您的成绩优秀")
+else:
+    print("您的成绩不合格")
+```
+python中，age可以写在中间，运算符和数值写在两边
+```
+age = 15
+# if age >= 18 and age < 60:
+if 18 <= age <60:
+    print("你已经不是个孩子啦，赶紧去工作吧")
+else:
+    print("你还是个孩子呢")
+```
+0转换为bool值代表False,其他值代表True
+```
+count = 0
+if count:
+    print("条件成立")
+else:
+    print("条件不成立")
+#运行结果：条件不成立
+count = 1
+if count:
+    print("条件成立")
+else:
+    print("条件不成立")
+#运行结果：条件成立
+if 2-1:
+    print("条件成立")
+else:
+    print("条件不成立")
+#运行结果：条件成立
+```
+在python中，None转化为bool值是False
+```
+result = None
+if result:#对后面的条件自动进行布尔值的转换
+    print("获取数据成功")
+else:
+    print("什么收获都没有")
+```
+**0、None、空字符串转换为布尔值后为False，其他值为True**
+## 循环
+### while循环
+```
+lap = 0
+while lap < 10:
+    lap+=1
+    print("我跑完了第"+str(lap)+"圈")
+```
+运行结果
+![6](https://img-blog.csdnimg.cn/5b8819848dc447209a17e7dab123b7d3.png)![7](https://img-blog.csdnimg.cn/cbc82ee236ac46168fb8cca3b8250876.png)
+循环体前面也是有4个空格的
+如果像下面这样写
+```
+lap = 0
+while lap < 10:
+    lap+=1
+    print("我跑完了第"+str(lap)+"圈")
+    print("跑步结束")
+```
+运行结果会是这样
+![8](https://img-blog.csdnimg.cn/db106ddfcf9b47cc97e1426822462e32.png)
+### for循环
+```
+seq = "hello"
+for i in seq:
+    print(i)
+```
+运行结果
+![9](https://img-blog.csdnimg.cn/287aab80bf96433ea233a728f1c2e597.png)
+```
+for i in range(10):
+    print(i)
+```
+运行结果
+![10](https://img-blog.csdnimg.cn/20ea04cb271a4aff92136ed12b961e70.png)
+计算机中所有数组都是从0开始
+```
+for lap in range(10):
+    print("我跑了第"+str(lap+1)+"圈")
+```
+运行结果
+![11](https://img-blog.csdnimg.cn/addcf2e8de9d4cafaea23fbc0f790a71.png)
+循环也是可以嵌套的
+### for和while组合使用
+嵌套循环时，写在里面的最先执行
+默认end是一个换行符
+```
+height = 5
+width = 6
+for _ in range(height):
+    for i in range(width):
+        print("*", end="")   #end=""  将空字符串赋值给换行符
+    print()
+```
+运行结果
+![12](https://img-blog.csdnimg.cn/6fefbcf29d8d4ede99654929d73a8e68.png)
+```
+for i in range(5):
+    for _ in range(i+1):
+        print("*",end="")
+    print()
+```
+运行结果
+![13](https://img-blog.csdnimg.cn/85aa1c6dd2a94ef6a77c31d69f0e5c80.png)
+```
+value=10 #通过改变变量值去改变程序的运行结果
+for i in range(value):
+    for _ in range(i+1):
+        print("*",end="")
+    print()
+```
+运行结果
+![14](https://img-blog.csdnimg.cn/ef7915648d3040b98f980e6d7a2f2249.png)
+打印99乘法算术表
+```
+for i in range(1,10):
+    for j in range(1,i+1):
+        print(str(j)+"*"+str(i)+"="+str(i*j),end=" ")
+    print()
+```
+![15](https://img-blog.csdnimg.cn/fb185974ea314278a46555d5d2d8bd51.png)
+### continue&break
+跳过第二圈
+```
+lap = 0
+while lap < 3:
+    lap += 1
+    if lap == 2:
+        continue
+    print("我跑完了第" + str(lap) + "圈")
+print("跑步结束")
+```
+运行结果
+![16](https://img-blog.csdnimg.cn/0168aeeac56d4d78a5920052e0c682b0.png)
+1+3+5+7+9=？
+```
+total = 0
+for i in range(10):
+    if i % 2 == 0:
+        continue
+    total += i
+    print(i,end=" ")
+    if i == 9:
+        continue
+    print("+",end=" ")
+print("=",total)
+```
+运行结果
+![17](https://img-blog.csdnimg.cn/d284bcd78ba4454d9c058994b9ba7659.png)
+将range中的值改为变量，方便后续修改
+```
+total = 0
+value = 10
+for i in range(value):
+    if i % 2 == 0:
+        continue
+    total += i
+    print(i,end=" ")
+    if i == value-1:
+        continue
+    print("+",end=" ")
+print("=",total)
+```
+运行结果
+![18](https://img-blog.csdnimg.cn/ffbaeb24f83247f2986bcef4c80e1d18.png)
+当value=25时（值为奇数时）如何去掉23后面的“+”？
+```
+total = 0
+value = 25
+for i in range(value):
+    if i % 2 == 0:
+        continue
+    total += i
+    print(i,end=" ")
+    if i == value - 1:
+        continue
+    print("+",end=" ")
+print("=",total)
+```
+运行结果
+![19](https://img-blog.csdnimg.cn/6159af706e504fa59d416f3f4c0475be.png)
+打印出整数部分
+```
+s = "128.55555563657465555512cg"
+for i in s:
+    if i == ".":
+        break
+    print(i,end="")
+```
+运行结果
+![20](https://img-blog.csdnimg.cn/4b591e7d52f74b0095113151a68fb9d2.png)
+## 智能密码锁
+```
+password = '123'
+while True:
+    pwd = input("请设置您的密码:\n")
+    if not pwd:
+    # 转换为布尔值为True,才会执行下一条指令
+    # 如果什么都不输入，那么pwd就被赋值了空字符串，严格意义的空字符串转换为布尔值为False
+    # not False 条件判断结果为True，那么就会执行下一条语句break
+    # 输入任何数值或者字符，bool(pwd)的结果为True
+    # not True 条件判断结果为False,那么就会跳过break语句，执行下一个循环
+        break
+        #循环结束
+    confirm_pwd = input("请再次输入您的密码:\n")
+    if pwd == confirm_pwd:
+        password = pwd
+        break
+    print("您两次输入的密码不一致，请重新输入")
+print("您的密码已经设置为:\n"+password)
+```
+运行测试
+![21](https://img-blog.csdnimg.cn/13671fb76f4548f4a54883a02ab6f029.png)
+![22](https://img-blog.csdnimg.cn/d992e80c65064896855fe17972267e70.png)
+```
+password = '1234567'
+print("进入开锁程序")
+while True:
+    input_pwd = input("请输入您的密码:\n")
+    if input_pwd == password:
+        break
+    else:
+        print("您输入的密码错误，请重新输入！")
+print("开锁成功")
+```
+运行测试
+![23](https://img-blog.csdnimg.cn/1a0c9cc366a543d7a0db91c2244358f6.png)
+### in
+```
+password = '1234567'
+print("进入开锁程序")
+while True:
+    input_pwd = input("请输入您的密码:\n")
+    if input_pwd in password:
+        break
+    else:
+        print("您输入的密码错误，请重新输入！")
+print("开锁成功")
+```
+运行结果
+![24](https://img-blog.csdnimg.cn/8507f6ff1dec4f939adee5317d678ed3.png)
+in 的测试
+```
+>>> 'abc' in 'abc1234er'
+True
+>>> 'abc' in '1123abcwq'
+True
+>>> 'abc' in '1234eqabc'
+True
+>>> 'abc' in '1a2b3ckkk'
+False
+>>> 'abc' in 'abc'
+True
+```
+```
+password = '123'
+print("进入开锁程序")
+while True:
+    input_pwd = input("请输入您的密码:\n")
+    if password in input_pwd:
+        break
+    else:
+        print("您输入的密码错误，请重新输入！")
+print("开锁成功")
+```
+运行测试
+![25](https://img-blog.csdnimg.cn/da8eb0b38d2445d985570b7c623561e3.png)
+### 完整的智能密码锁程序
+```
+password = '123'
+while True:
+    pwd = input("请设置您的密码:\n")
+    if not pwd:
+    # 转换为布尔值为True,才会执行下一条指令
+    # 如果什么都不输入，那么pwd就被赋值了空字符串，严格意义的空字符串转换为布尔值为False
+    # not False 条件判断结果为True，那么就会执行下一条语句break
+    # 输入任何数值或者字符，bool(pwd)的结果为True
+    # not True 条件判断结果为False,那么就会跳过break语句，执行下一个循环
+        break
+        #循环结束
+    confirm_pwd = input("请再次输入您的密码:\n")
+    if pwd == confirm_pwd:
+        password = pwd
+        break
+    print("您两次输入的密码不一致，请重新输入")
+print("您的密码已经设置为:\n"+password)
+print("进入开锁程序")
+failed_time = 0
+while True:
+    input_pwd = input("请输入您的密码:\n")
+    if password in input_pwd:
+        print("开锁成功")
+        break
+    else:
+        print("您输入的密码错误，请重新输入！")
+        failed_time += 1
+        if failed_time >= 3:
+            print("输入错误超过3次，请联系主人")
+            break
+```
+运行测试
+![26](https://img-blog.csdnimg.cn/8ea9b229e79a4ae680bdb9045b526c02.png)
+# python数据结构
+## 字符串格式化
+优化前
+```
+# lap = 3
+# print("我跑完了第"+str(lap)+"圈")
+```
+优化后
+```
+#%d整数占位符
+lap = 3
+print("我跑完了第%d圈" % lap)
+```
+运行结果
+![27](https://img-blog.csdnimg.cn/1a4c9ea675204c64be756f19b6eee1c5.png)
+### %占位符
+%d 整数占位符
+%f 浮点数占位符
+%.f 指定精度的浮点数占位符
+%s 字符串占位符
+%% 输出%
+```
+print("圆周率: %f " % 3.14)
+```
+运行结果
+![28](https://img-blog.csdnimg.cn/0ba75e661d494ade97c171009e6b6c56.png)
+打印浮点数会有精度上的问题
+```
+print("圆周率: %.2f " % 3.1415926)
+```
+运行结果
+![29](https://img-blog.csdnimg.cn/63eab58e8f0e45fdbd0bc6653b0a110b.png)
+```
+print("圆周率: %.5f " % 3.1415926)
+```
+运行结果
+![30](https://img-blog.csdnimg.cn/3b4d402deb7b48ea90305bd9e9c2f2b1.png)
+%d也可以对浮点数占位，输出结果相当于int(浮点数)
+```
+print("%d" % 3.14)
+print("%d" % 3.99)
+```
+运行结果
+![31](https://img-blog.csdnimg.cn/16e0d11a540140f7980831c06921bbcc.png)
+```
+print("账户余额:%.2f" % 99.99)
+print("不足两位会补零:%.2f" % 3.1)
+print("整数自动转为浮点数，并截取到小数点后两位:%.2f" % 3)
+```
+运行结果
+![32](https://img-blog.csdnimg.cn/c7054bbf525b4e028318a5a223bc940b.png)
+```
+print("%s" % 100)
+print("%s" % 3.14)
+print("%s" % 'python')
+```
+运行结果
+![33](https://img-blog.csdnimg.cn/9c89366f62bd4cee88cf1eaaaf6acc87.png)
+```
+report = "%d年%s公司营收增长了%.2f" % (2019,"腾讯",20.28)
+print(report)
+```
+运行结果
+![34](https://img-blog.csdnimg.cn/088c6d0d7d1646f089a99462f0ec14e2.png)
+```
+report = "%d年%s公司营收增长了%.2f" % (2019,"腾讯",20.28)
+year = 2018
+company = "腾讯"
+company = "华为"
+promote = 20.28
+#优化前写法
+report = str(year)+'年'+company+"公司营收增长了百分之"+str(promote)
+#优化后写法
+report = "%d年%s公司营收增长了%.2f" % (year,company,promote)
+print(report)
+```
+运行结果
+![35](https://img-blog.csdnimg.cn/2413f0cb75f64cab9b72c6e46bc46d10.png)
+字符串中%%输出%
+```
+year = 2018
+company = "华为"
+promote = 20.28
+report = "%d年%s公司营收增长了%.2f%%" % (year,company,promote)
+print(report)
+```
+运行结果
+![36](https://img-blog.csdnimg.cn/2ab45015ab7c4a4cbfd0d5f162427778.png)
+### format
+1.数字分隔
+```
+# 12亿3000万
+# 1，234，567，890
+print('{:,}'.format(1234567890))
+```
+运行结果
+![37](https://img-blog.csdnimg.cn/c749bd11a70b4c4db55028b806ae25d3.png)
+2.像百分号一样格式化多个参数
+```
+report = "{0}年{1}公司营收增长了{2}%".format(2019,"腾讯",20.28)
+print(report)
+```
+运行结果
+![38](https://img-blog.csdnimg.cn/d1c3ef31e4a84f2cba333b9d6de15346.png)
+```
+s = "{0}的GDP只有{1}...虽然{0}的GDP只有{1}，但是那里的人们生活得很幸福".format("理想国",1000)
+print(s)
+```
+运行结果
+![39](https://img-blog.csdnimg.cn/e898a2f890304e4ea005c9303aed1a34.png)
+如果一长串字符串里有重复的字符串、可以使用format、比%占位符方便
+如果使用%占位符输出这段话,后面的参数要和前面的一一对应，都要写出来
+```
+s = "%s的GDP只有%d...虽然%s的GDP只有%d，但是那里的人们生活得很幸福" % ("理想国",1000,"理想国",1000)
+print(s)
+```
+运行结果
+![40](https://img-blog.csdnimg.cn/6dd66914066d42729e2f7975abe79e66.png)
+同一个字符串可以以不同的格式输出
+```
+s = "{0}的GDP只有{1:,}...虽然{0}的GDP只有{1}，但是那里的人们生活得很幸福".format("理想国",1000)
+print(s)
+```
+运行结果
+![41](https://img-blog.csdnimg.cn/677478694930494fb343e65fa0685d8e.png)
+修改数据时只需要修改一个地方
+```
+s = "{0}的GDP只有{1:,}...虽然{0}的GDP只有{1}，但是那里的人们生活得很幸福".format("理想国",100000000)
+print(s)
+```
+运行结果
+![42](https://img-blog.csdnimg.cn/5f13c72ea4634fb7a666f3d9c95639af.png)
+## 字符串索引与切片
+理解1：[1:3] 中括号表示索引，数字表示索引的位置，切片表示索引的区间
+理解2：索引表示取一个字符、切片表示取一个位置区间的字符
+注意：变量名[从第几个字符取:取几个字符]，计算机是从“0”开始记位置的，从第“0”个开始取，“0”可以不写，并且[]中数据类型不能是int float
+![43](https://img-blog.csdnimg.cn/fcce63eee63542cd8244723e70aeda36.png)
+![44](https://img-blog.csdnimg.cn/81737182a0f04a5b882ac2b4c6a5fd2f.png)
+![45](https://img-blog.csdnimg.cn/b51d4b93a8ab403e9f1e07a92acc898d.png)
+```
+s = ''CHINA"
+s[0]   #中括号表示索引
+'C'
+s[1]
+'H'
+s[3]
+'N'
+s[4]
+'A'
+s[-1]
+'A'
+s[0:3]   #相当于range(3)  0~2
+'CHI'
+s[:3]    #0可以省略
+'CHI' 
+```
+![46](https://img-blog.csdnimg.cn/2a2b70bc5c974b26a4a0162191e7e2bf.png)
+```
+s[1:3]
+'HI'
+s[0:0]    #返回一个空字符串
+' '
+s[0:1]
+'C'
+s[0:-1]
+'CHIN'
+s[0:-2]
+'CHI'
+s[0:5]
+'CHINA'
+s[0:]    #表示一直取到末尾
+'CHINA'
+s[:5]
+'CHINA'
+s[:]     #这种写法通常用于切片出整个字符串
+'CHINA'
+```
+......
+```
+s = 'CHINA'
+
+s[0]   #第一个字符
+s[-1]  #最后一个字符
+s[-2]  #倒数第二个字符
+
+#表示从第一个字符开始取，取出3个字符
+s[0:3] #CHI
+s[:3]  #CHI
+
+#取出整个字符串
+s[0:5]
+s[0:]
+s[:]
+
+#从第三个取到末尾
+s[2:]
+```
+间隔取字符
+```
+#从头开始取，到尾，每隔两个字符取一个
+s = 'CHINA'
+print(s[::2])
+#从第八个字符开始取，取值范围是8~15闭区间，每隔2个字符取一个字符
+print("dqwghnmlkjoghdfvcxv"[8:16:2])
+#kjoghdfv  #第八个字符是K,取出来，每隔2个字符取
+```
+运行结果
+![47](https://img-blog.csdnimg.cn/008a050ccabe4ebeb591fb0005c46eeb.png)
+将字符串倒序输出
+```
+s = 'CHINA'
+print(s[::-1])
+```
+运行结果
+![48](https://img-blog.csdnimg.cn/93c770da07de41ca9833e000520f0040.png)
+```
+s = 'CHINA'
+print(s[::-2])
+```
+运行结果
+![49](https://img-blog.csdnimg.cn/acad930fe57746e1bfb06a94f608882f.png)
+## 字符串函数
+### 去除空白字符
+strip()  去除首尾的特殊空白字符
+lstrip() 去掉左边的空格或者制表符
+rstrip() 去掉右边的空格或者制表符
+```
+#去除空白字符
+print("    A\tB\tC\nD\tE\tF   ")
+print("     abc")
+print("     abc".strip())
+password = '123'
+input_password = '123'
+print(password == input_password)
+```
+运行结果
+![50](https://img-blog.csdnimg.cn/571defa642924c82b6957114e123c9a3.png)
+当字符里有空格时
+```
+password = '123'
+input_password = '   123'
+print(password == input_password)
+```
+运行结果
+![51](https://img-blog.csdnimg.cn/98f173581c3e4f6f9180cadd328736f2.png)
+input_password后加上strip函数
+```
+password = '123'
+input_password = '   123'
+print(password == input_password.strip())
+```
+运行结果
+![52](https://img-blog.csdnimg.cn/726675e39c0d4730acca42bfcbfca39b.png)
+**注意：strip()只能去除首尾的空格、制表符**
+```
+password = '123'
+input_password = '   1 23'
+print(password == input_password.strip())
+```
+运行结果
+![53](https://img-blog.csdnimg.cn/9cd54c545ad546649c7cfe6fdf270334.png)
+```
+password = '123'
+input_password = '   123'
+print(password == input_password.strip())
+print('\nabcdf\tg\n'.strip())
+print("检查最后的换行符有没有被消掉")
+print("\nabcdf\tg\n")
+print("检查最后的换行符有没有被消掉")
+```
+运行结果
+![54](https://img-blog.csdnimg.cn/29cf9827f9fe4a648430b3ba0f17dbff.png)
+### 大小写操作
+
+> upper() 小写转大写 
+> lower() 大写转小写 
+> capitalize() 只把首字母转换为大写
+>  title() 把一句中每个单词的首字母转换为大写
+```
+print('china'.upper())
+print('CHINA'.lower())
+print('china'.capitalize())
+print('i have a dream'.title())
+```
+运行结果
+![55](https://img-blog.csdnimg.cn/1573a3181aaa4ef58de49ad06a18b783.png)
+### 字符串判断
+
+```
+print('china'.islower())#判断是否为小写
+print('CHINA'.isupper())#判断是否为大写
+print('123456'.isdigit())#判断是否为数字
+print('china'.startswith('c'))#判断是否以xx开始
+print('china'.startswith('ch'))
+print('-234567'.startswith('-'))
+print('-234567'.endswith('7'))#判断是否以xx结束
+```
+运行结果
+![56](https://img-blog.csdnimg.cn/4b39c5a0c3804ba0bc74af956a4a4a6b.png)
+### 找到字符串的位置
+find()
+index()
+
+```
+password = '123'
+input_password = '456123789'
+print(input_password.find(password))
+```
+
+运行结果
+![57](https://img-blog.csdnimg.cn/cb23db47bf0b4eba923c713fdc528c81.png)
+
+```
+password = '1234'
+input_password = '456123789'
+print(input_password.find(password))
+```
+运行结果
+
+![58](https://img-blog.csdnimg.cn/c4e2d7e3f92b4b0f91d1b6d458dbed19.png)
+字符串不在该段字符里，输出-1
+也就是说，只要输出结果不为-1，那么查找的字符串就一定存在被查字符串中
+
+```
+password = '123'
+input_password = '456123789'
+print(input_password.find(password))
+print(input_password.index(password))
+```
+
+![59](https://img-blog.csdnimg.cn/145f03124a584ae097eb7c6501c6ad05.png)
+index()和find()实现一样的功能
+区别:使用index()时，若查找的字符串不存在被查字符串中，就会报错
+find()不会报错，会返回一个值：-1
+
+```
+password = '1234'
+input_password = '456123789'
+print(input_password.find(password))
+print(input_password.index(password))
+```
+
+运行结果
+![60](https://img-blog.csdnimg.cn/0b81755cf9cf4c6b8744363fcc4e4f3d.png)
+**使用场景**
+若想保证后面的代码能够正常运行，就使用find()
+若找的是一个非常重要的代码，如果找不到，就会导致后面的代码无法运行，那么用index()，使错误暴露出来，有利于我们后续调试哦。
+### 统计字符串出现的次数
+count()
+
+```
+b = 'banana'
+print(b.count('a'))
+```
+运行结果
+![61](https://img-blog.csdnimg.cn/9ad1275dd9e54093b7a25a0bd565d577.png)
+
+```
+b = 'banana'
+print(b.count('n'))
+```
+运行结果
+
+![62](https://img-blog.csdnimg.cn/9907811114634eebb68a1a49c868ae53.png)
+### 替换字符串
+replace()
+
+```
+print("你是大笨蛋啦".replace('大笨蛋','小可爱'))
+```
+运行结果
+![63](https://img-blog.csdnimg.cn/0a9a8e6106884edf90cd5689ed35cb19.png)
+### 统计字符串长度
+len()  不是字符串函数   是python内置函数
+
+```
+print(len('你是大笨蛋啦'))
+print(len('china'))
+print(len('0'))
+print(len(''))
+```
+运行结果
+![64](https://img-blog.csdnimg.cn/3945b7ceb93f4616af17715f45f6b573.png)
+## 电话号码识别
+注意变量名[从第几个字符取:取几个字符]，计算机是从“0”开始记位置的，从第“0”个开始取，“0”可以不写，并且[]中数据类型不能是int float
+> num[0:2]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not subscriptable
+> num = '234566'
+> num
+'234566'
+> num[0:2]
+'23'
+>num[:2]
+'23'
+> num[:3]
+'234'
+> num = 223.00000
+> num
+223.0
+> num[:3]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'float' object is not subscriptable
+> num = "223.000"
+> num[:3]
+'223'
+
+```
+# 11位
+# 13 15 17 18 19
+# 区号+电话号码 010 0888 + 8位=11位或者12位
+# 400电话：400开头，10位
+# 当用户输入exit的时候，程序退出
+cellphone_number_start = "13 15 17 18 19"
+telephone_number_start ="010 021 022 025 0888 0555"
+while True:
+    # 捕捉电话号码
+    num = input("请输入一个电话号码:\n")
+    # 当用户输入exit的时候，程序退出
+    if num.strip() == 'exit':
+        break # 退出程序
+    # 判断用户有没有输入电话号码
+    if not num:
+        print("电话号码不能位空\n")
+        continue # 不执行下面的语句，但是程序不退出、返回到while循环
+    # 去除字符串中的空格、制表符
+    num = num.strip()
+    # 判断输入的电话号码是否位数字
+    if not num.isdigit():
+        print("您输入的是一个无效的号码")
+        continue
+    # 判断电话号码开头是否在“13 15 17 18 19”之中
+    # 注意startwith()和in的区别
+    # 取出电话号码中的前两位num[:2]
+    # 统计号码的长度len(num)
+    if num[:2] in cellphone_number_start and len(num) == 11:
+        print("这是一个手机号码")
+        continue
+    if num.startswith('0'):
+        # 01000000000
+        # 088812345678
+         if len(num) == 11:
+             num = num[:3]
+         if len(num) == 12:
+             num = num[:4]
+         if num in telephone_number_start:
+             print("这是固定号码")
+         continue
+        # if len(num) == 11 and num[:3] in telephone_number_start
+        #     print("这是固定号码")
+        #     continue
+        # elif len(num) == 12 and num[:4] in telephone_number_start
+        #     print("这是固定号码")
+        #     continue
+        # 优化代码
+        # if (len(num) == 11 and num[:3] in telephone_number_start) or \
+        # (len(num) == 12 and num[:4] in telephone_number_start):
+        #     print("这是固定号码")
+        #     continue
+        # 黑块变成竖线，按insert键
+    if num.startswith('400') and len(num) == 10:
+        print("这是一个广告电话")
+        continue
+    print("无法识别该号码")
+```
+这个程序有一个bug,当 num = "08881234567" 时 只有11位时也满足条件
+![65](https://img-blog.csdnimg.cn/cdc49fc7f01b47459c7cdee82dc076ec.png)
+故运行结果不是
+![66](https://img-blog.csdnimg.cn/140342aa41b74d4b9dc039edf354a54b.png)
+而是
+![67](https://img-blog.csdnimg.cn/cd494cbaa15b47a3b537c39dfd91dbd2.png)
+下面是解bug的过程
+
+```
+# 11位
+# 13 15 17 18 19
+# 区号+电话号码 010 0888 + 8位=11位或者12位
+# 11位区号是3位数、12位区号是4位数
+# 400电话：400开头，10位
+# 当用户输入exit的时候，程序退出
+cellphone_number_start = "13 15 17 18 19"
+# telephone_number_start = "010 021 022 025 0888 0555"
+# 将上面3位数和4位数拆开赋值
+telephone_number_start_3 = "010 021 022 025"
+telephone_number_start_4 = "0888 0555"
+# 如果手机号为11位，那么区号为3位数，判断手机号前3位数是否在telephone_number_start_3中就可以判断这个电话号码是否为固定号码了
+# 如果手机号为12位，那么区号为4位数，判断手机号前4位数是否在telephone_number_start_4中就可以判断这个电话号码是否为固定号码了
+# 两者是或的关系，用or连接
+# 以下是代码
+# if (len(num) == 11 and num[:3] in telephone_number_start_3) or \
+# (len(num) == 12 and num[:4] in telephone_number_start_4):
+#  print("这是固定号码")
+while True:
+    # 捕捉电话号码
+    num = input("请输入一个电话号码:\n")
+    # 当用户输入exit的时候，程序退出
+    if num.strip() == 'exit':
+        break # 退出程序
+    # 判断用户有没有输入电话号码
+    if not num:
+        print("电话号码不能位空\n")
+        continue # 不执行下面的语句，但是程序不退出,返回到while循环
+    # 去除数字中的空格、制表符
+    num = num.strip()
+    # 判断输入的电话号码是否为数字
+    if not num.isdigit():
+        print("您输入的是一个无效的号码")
+        continue
+    # 判断电话号码开头是否在“13 15 17 18 19”之中
+    # 注意startwith()和in的区别
+    # 取出电话号码中的前两位num[:2]
+    # 统计号码的长度len(num)
+    if num[:2] in cellphone_number_start and len(num) == 11:
+        print("这是一个手机号码")
+        continue
+    if num.startswith('0'):
+        # 01000000000
+        # 088812345678
+        # if len(num) == 11:
+        #     num = num[:3]
+        # if len(num) == 12:
+        #     num = num[:4]
+        # if num in telephone_number_start:
+        #     print("这是固定号码")
+        # continue
+        # if len(num) == 11 and num[:3] in telephone_number_start
+        #     print("这是固定号码")
+        #     continue
+        # elif len(num) == 12 and num[:4] in telephone_number_start
+        #     print("这是固定号码")
+        #     continue
+        # 优化代码
+        # if (len(num) == 11 and num[:3] in telephone_number_start) or \
+        # (len(num) == 12 and num[:4] in telephone_number_start):
+        #     print("这是固定号码")
+        #     continue
+        # 黑块变成竖线，按insert键
+        if (len(num) == 11 and num[:3] in telephone_number_start_3) or \
+        (len(num) == 12 and num[:4] in telephone_number_start_4):
+            print("这是固定号码")
+            continue
+    if num.startswith('400') and len(num) == 10:
+        print("这是一个广告电话")
+        continue
+    print("无法识别该号码")
+```
+运行结果
+![68](https://img-blog.csdnimg.cn/8f154bf1c42a4516b1e96a4aed2fb1fa.png)
+程序逻辑图
+初版
+![69](https://img-blog.csdnimg.cn/68f88ef33edc41ebb5867824523af24a.png)
+## 元组
+### tuple()
+和字符串类似，可以迭代循环，可以按索引访问、也可以按切片访问。字符串组成只能是单个字符。而元组更加多元化一些，可以存储各种类型的数据。
+
+```
+t = tuple('python')
+print(t)
+```
+运行结果
+
+![70](https://img-blog.csdnimg.cn/724c85d718ad4f759e0907a56cefeda4.png)
+
+```
+# 元组的定义
+t = tuple('python')
+t = ('p', 'y', 't', 'h', 'o', 'n')
+t = ('My','age','is',18)
+t = 'My','age','is',18 # 定义元组是可以不带括号的
+print(t)
+print(t[0],t[2],t[-1])
+print(t[:2])  #取出来的是元组
+t = ('single',) # 一个元素也可以定义一个元组
+t = 'single', # 只有一个元素时可以不加括号但是要加逗号
+print(t)
+
+```
+运行结果
+
+![71](https://img-blog.csdnimg.cn/ad47484fcaaa46a782a7494a89fce9c7.png)
+不管定义是否带括号，运行结果是带括号的
+
+>以下是对元组的解释
+> 元组相当于其他编程语言里的数组
+>python里的元组是不可变的（不可作为变量赋值）
+>和字符串一样不能赋值
+>'python'[0] = 't' # 这里原本的意图是将‘python'中的'p'改为’t' 但实际运行会报错
+>报错信息：TypeError: 'str' object does not support item assignment
+>同理：元组也是不可更改（也就是不能赋值）
+>t[0] = 'yours'
+>报错信息：TypeError: 'tuple' object does not support item assignment
+>也就是说，元组是不可变序列
+### " ".join()
+
+```
+# t = 'My','age','is','18' "".join()中只能含字符串，数字不行
+t = 'My', 'age', 'is', '18'
+print(" ".join(t)) # 连接元组中的元素
+```
+运行结果
+![72](https://img-blog.csdnimg.cn/2e9351818f534ea38a9bc4997ac12ca6.png)
+如果不在""中加空格变为" "
+运行结果
+![73](https://img-blog.csdnimg.cn/9c6de3d1425b4e95889e43ac0590dce6.png)
+
+```
+t = 'My', 'age', 'is', '18'
+print("+".join(t)) # 连接元组(或者某一个序列)中的元素
+```
+运行结果
+![74](https://img-blog.csdnimg.cn/7618f21d80ce4997ae64b61430b6b284.png)
+![75](https://img-blog.csdnimg.cn/cd1abe343f554709960bdc28a3173891.png)
+元组和字符串一样，也有count和index函数，使用方法和字符串一样
+
+```
+t = 'a','b','b','a'
+print(t.count('a'))
+print(t.index('b'))
+```
+运行结果
+![76](https://img-blog.csdnimg.cn/8b04d6a0efd241a9aa4d1523a4380183.png)
+和字符串中使用index一样，如果查找的值不在元组中，程序就会报错
+
+```
+t = 'a','b','b','a'
+print(t.index('notexists'))
+```
+运行结果
+![77](https://img-blog.csdnimg.cn/4c4d42b1a46d417586ba9a8b7e385638.png)
+元组中用find()函数查找元素位置会报属性错误
+```
+t = 'a','b','b','a'
+print(t.find('notexists'))
+```
+运行结果
+![78](https://img-blog.csdnimg.cn/c6bb253852104b94b38fd7bdd3557dce.png)
+
+```
+t = 'a','b','b','a'
+print(len(t)) # 输出元组的长度
+```
+运行结果
+
+![79](https://img-blog.csdnimg.cn/f6b2cd381a0b4f9183d08f09f4ea431c.png)
+
+```
+# 定义一个长度为10000的元组
+t = tuple(range(10000))
+print(len(t))
+```
+运行结果
+![80](https://img-blog.csdnimg.cn/ca56a7c6823a4d96bd24a89af5335303.png)
+
+```
+# 定义一个长度为10000的元组，并取出第一个元素和最后一个元素
+t = tuple(range(10000))
+print(len(t),t[0],t[-1])
+```
+运行结果
+![81](https://img-blog.csdnimg.cn/7b5900b048684851b3f6880717bc3371.png)
+
+```
+# 判断元组是否包含某一个元素
+t = tuple(range(10000))
+print(8888 in t)
+print(10000 in t)
+# 元组中的迭代
+t = ('a', 'b', 'c', 'd', 'e')
+for i in t:
+    print(i)
+i = 0
+while i < len(t):
+    print(t[i])
+    i += 1
+i = 0
+while i < len(t):
+    print(" ".join(t[:i]))
+    i += 1
+
+for i in range(len(t)):
+    print(" ".join(t[:i]))
+```
+运行结果
+![82](https://img-blog.csdnimg.cn/6bfb31aaa88f4be28419c5b0460e67f9.png)
+## 销售数据统计-找出销售冠军
+![83](https://img-blog.csdnimg.cn/781a36a0922440fa8a33c13907a67d45.png)
+```
+sales = (
+    ("Peter", (78,70,65)),
+    ("John", (88,80,85)),
+    ("Tony", (90,99,95)),
+    ("Henry",(80,70,55)),
+    ("Mike",(95,90,95)),
+)
+champion = ''
+max_amount = 0
+# for sale in sales:
+#     name = sale[0]
+#     quarter_amount = sale[1]
+# 优化上面三行代码
+for name,quarter_amount in sales:
+    total_amount = 0
+    # for month_amount in quarter_amount:
+    #     total_amount += month_amount
+        # 优化这句代码，引入求和函数
+    total_amount = sum(quarter_amount)
+    if total_amount > max_amount:
+        # champion = name
+        # max_amount = total_amount
+        # 优化前两句代码，写成一句
+        champion, max_amount = name, total_amount
+print("第一季度的销售冠军是%s,TA的总销售额是%d万元" % (champion, max_amount))
+```
+运行结果
+![84](https://img-blog.csdnimg.cn/8e538822edbe4b87b04e6134267c9d94.png)
+
+> c = 1,2 
+> a, b = c 
+> a 
+> 1
+>  b 2 
+>  先写出来，后调优
+## 列表
+```
+# 列表和元组差不多、区别就是列表可以动态增加、修改、删除里面的元素
+# list  最好不要直接用list来定义（变量名不要直接用list）
+# 创建列表的方式
+lst = list() # 创建空的元表  list的类就叫list、所以变量名不能叫list
+lst = [] # 定义空列表、元组是弧括号、列表是方括号
+lst = [1, 2, 3, 4] # 有4个初始化值的列表
+lst = ["a", 1, 2, 3.14, (1, 2, 3)]
+print(lst)
+lst = list('abcd')
+lst = list(range(100))
+lst = list((1,2,3))
+print(lst)
+lst = ['a', 'b', 'c', 'd', 'e']
+print(lst[0],lst[-1])
+print(lst[1:3])  # 切片返回的是同类型的值、索引返回的是根据元素同类型的值
+lst.append('f') # 从列表末尾添加元素
+print(lst)
+print(len(lst)) #统计列表长度 和元组一样
+lst[0] = 'A' # 将第0个元素改为'A'
+print(lst)
+lst[-1] = 'F' # 将最后一个元素改为'F'
+print(lst)
+del lst[0] # python中的关键词，用来删除某样东西。变量中也有del,很少用。列表常用del
+print(lst)
+del lst[-1]#删除之后元素的索引会发生变化
+print(lst)
+```
+运行结果
+![85](https://img-blog.csdnimg.cn/672fd925f8b94e6c8bb0279e6ff3f6a1.png)
+### 列表函数
+#### 与元组一样的函数
+>lst = ['a','b','c','d','e']
+> for i in lst:
+...     print(i)
+...
+a
+b
+c
+d
+e
+lst.count('a')
+1
+ lst.append('a') 在列表末尾添加元素
+ lst
+['a', 'b', 'c', 'd', 'e', 'a']
+lst.count('a')
+2
+ lst.index('a')
+0
+lst.index('e')
+4
+#### list特有的函数
+
+```
+lst = ['a', 'b', 'c', 'd', 'e']
+lst.insert(0,"A")  # 在第0个元素前插入'A'
+print(lst)
+lst.insert(2,'B')
+print(lst)
+lst.insert(-1,'E')
+print(lst)
+
+lst.pop() # 删除列表的最后一位
+last = lst.pop()
+print(lst, last)
+while lst:
+    print(lst.pop())
+print(lst)
+
+lst = ['a', 'b', 'c', 'd', 'e']
+temp = lst.pop(2) # 按照索引删除元素
+print(temp, lst)
+
+lst = ['a', 'b', 'c', 'd', 'e']
+lst.remove('a')  # 指定删除的值 不确定某个元素在列表中的位置可以用此函数
+print(lst)
+lst.clear() # 清除列表里所有的元素
+print(lst)
+
+# extend append 
+lst.append('a')  一次只能添加一个元素
+print(lst)
+lst.extend(['b', 'c', 'd']) 添加一个列表、相比append效率更高、向其中插入好几个数据可以用extend
+print(lst)
+
+lst.reverse() # 反转函数
+print(lst)
+
+sort 排序
+lst = [3, 5, 1,  2, 4]
+lst.sort()  #改变原有列表的顺序
+print(lst)
+lst.sort(reverse = True)
+print(lst)
+```
+ASCII  基于拉丁语的编码系统、0-9、A-Z、a-z 每个字符对应一个数字	
+排序是按ASCII对应的数值大小排序的
+>>> ord('A')
+65
+>>> ord('B')
+66
+>>> ord('a')
+97
+>>> ord('b')
+98
+
+```
+lst = ['apple', 'banana', 'orange', 'blueberry']
+lst.sort()  #按照字母表的顺序排序
+print(lst)
+```
+![86](https://img-blog.csdnimg.cn/0cf9b0b9fe7a4bc18d23844d03e355f7.png)
+>>> chr(98)
+'b'
+>>> chr(99)
+'c'
+
+```
+
+```
+
+#### 列表转布尔值
+>bool([1,2,3])
+True
+> bool([1,2])
+True
+>bool([1])
+True
+> bool([])
+False
+>
+sort
+持续更新中...
